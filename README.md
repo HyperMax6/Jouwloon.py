@@ -41,8 +41,8 @@ Example output:
     "2024-11-23": {
         "start": "2024-11-23T15:00:00",
         "end": "2024-11-23T19:00:00",
-        "afdeling": str,
-        "vestiging": int
+        "afdeling": xxx,
+        "vestiging": xxx
     }
 }
 ```

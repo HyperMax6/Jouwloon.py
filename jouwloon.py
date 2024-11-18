@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+from requests.exceptions import RequestException
 
 headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
@@ -8,7 +9,7 @@ headers = {
     'X-Requested-With': 'XMLHttpRequest',
 }
 
-def jouwloonLogin(username, password):
+def login(username, password):
     loginSession = requests.Session()
 
     login_url = "https://jouwloon.nl/Login.aspx"
@@ -37,9 +38,24 @@ def jouwloonLogin(username, password):
         '__ASYNCPOST': 'true',
         'ctl00$ContentPlaceHolder1$Button_Inloggen': 'Inloggen'
     }
+    
+    try:
+        response = loginSession.post(login_url, headers=headers, data=payload)
+        response.raise_for_status()
 
-    loginSession.post(login_url, headers=headers, data=payload)
-    return loginSession
+        if "Foutmelding" in response.text:
+            print("Login failed. Please check your credentials.")
+        else:
+            print("Login successful!")
+
+        return loginSession
+
+    except RequestException as e:
+        print(f"An error occurred while trying to login: {e}")
+
+    except Exception as e:
+        # Handle any other exceptions
+        print(f"An unexpected error occurred: {e}")
 
 def getCalendar(session, start, end):
     vestiging = session.get(url='https://jouwloon.nl/api/rooster/GetRoosterVestigingen', headers=headers).json()[0]
@@ -56,7 +72,6 @@ def getCalendar(session, start, end):
     shifts = {}
 
     for day in jsonResponse:
-        print(day)
         roosterdienst = day['roosterdienst'][0]
         shifts[day['id']] = {
             'start': roosterdienst['vanafDatum'],

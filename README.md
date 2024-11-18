@@ -18,8 +18,10 @@ For `session` enter the session that you created with the `jouwloon.login()` fun
 ## Example
 This is an example which prints all appointments within the next 7 days:
 ```
-# importing
+# Importing the library
 import jouwloon
+
+# Importing other stuff
 from datetime import datetime
 import pandas
 import json
@@ -33,7 +35,7 @@ session = jouwloon.login(username, password)
 
 # Making the start and end date
 now = datetime.now()
-end = pandas.to_datetime(now)+pandas.DateOffset(weeks=1)
+end = pandas.to_datetime(now)+pandas.DateOffset(days=7)
 
 # Fetching the calendar
 calendar = jouwloon.getCalendar(session, now, end)

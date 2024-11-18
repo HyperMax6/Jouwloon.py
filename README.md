@@ -8,6 +8,8 @@ To install:
 <br>`pip install requests`
 <br>`pip install bs4`
 
+This will not work if you have 2fa turned on. I'm not that smart :(
+
 ## Log in
 To log in use the function `jouwloon.login(username, password)`. This function will return the request session which is needed to make further requests.
 

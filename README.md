@@ -1,9 +1,15 @@
 # Jouwloon.py
 Log in and fetch your working schedule from Jouwloon.
 
+## Requirements
+The `requests` and `bs4` libraries are required
+
+To install:
+<br>`pip install requests`
+<br>`pip install bs4`
+
 ## Log in
-To log in use the function `jouwloon.login(username, password)`.
-This function will return the request session which is needed to make further requests.
+To log in use the function `jouwloon.login(username, password)`. This function will return the request session which is needed to make further requests.
 
 ## Fetching calender
 Requesting calender information can be done with the function `jouwloon.getCalendar(session, start, end)`.

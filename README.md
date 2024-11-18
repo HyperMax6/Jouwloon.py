@@ -2,7 +2,7 @@
 Log in and fetch your working schedule from Jouwloon.
 
 ## Requirements
-The `requests` and `bs4` libraries are required
+The `requests` and `bs4` libraries are required.
 
 To install:
 <br>`pip install requests`
@@ -16,7 +16,7 @@ Requesting calender information can be done with the function `jouwloon.getCalen
 For `session` enter the session that you created with the `jouwloon.login()` function. This will return all working appointments planned between the `end` and `start` date. The returned object is a stripped down version of the jouwloon `/api/rooster/GetKalender` endpoint, as it includes a lot of useless and repeating information.
 
 ## Example
-This is an example which prints all appointments withing the next 7 days:
+This is an example which prints all appointments within the next 7 days:
 ```
 # importing
 import jouwloon
